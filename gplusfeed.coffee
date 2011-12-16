@@ -8,6 +8,8 @@ DateFormat = require('dateformatjs').DateFormat
 atom_format = new DateFormat "yyyy'-'MM'-'dd'T'HH':'mm':'sszzzz"
 ymd_format = new DateFormat "yyyy'-'MM'-'dd"
 
+appurl = 'http://gplusfeed.jadonk.cloud9ide.com/'
+
 app = express.createServer()
 
 app.configure () ->
@@ -31,6 +33,7 @@ htmlSafe = (s) ->
 
 getPosts = (content) ->
   content = content.slice(8)
+  content = content.replace(/^[^\[]*/m, '')
   content = content.replace(/,,/mg, ',null,')
   content = content.replace(/,,/mg, ',null,')
   content = content.replace(/\[,/mg,'[null,')
@@ -69,7 +72,7 @@ processResponse = (id, content) ->
     output += '<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">\n'
     output += '<title>' + author + ' - Google+ User output</title>\n'
     output += '<link href="https://plus.google.com/' + id + '" rel="alternate"></link>\n'
-    output += '<link href="http://gplusfeed.herokuapp.com/' + id + '" rel="self"></link>\n'
+    output += '<link href="' + appurl + id + '" rel="self"></link>\n'
     output += '<id>https://plus.google.com/' + id + '</id>\n'
     output += '<updated>' + atom_format.format(updatedTimestamp) + '</updated>\n'
     output += '<author><name>' + author + '</name></author>\n'
