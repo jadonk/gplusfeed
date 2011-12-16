@@ -1,0 +1,9 @@
+[submodule "express"]
+	path = express
+	url = git://github.com/visionmedia/express.git
+[submodule "dateformatjs"]
+	path = dateformatjs
+	url = git://github.com/minodisk/dateformat-js.git
+[submodule "ejs"]
+	path = ejs
+	url = git://github.com/visionmedia/ejs.git
